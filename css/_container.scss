@@ -1,0 +1,10 @@
+.container {
+    max-width: 505px;
+    margin: 0 auto;
+    padding: 0px 16px;
+
+  @include mq(505) {
+    max-width: 400px;
+  }
+
+}

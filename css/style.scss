@@ -1,0 +1,422 @@
+@import "_reset.scss";
+@import "_font.scss";
+@import "_mixin.scss";
+@import "_container.scss";
+@import "_variables.scss";
+
+input,
+textarea,
+button {
+    font-family: $mainFont;
+    outline: none;
+}
+
+body {
+    font-family: $mainFont;
+    direction: rtl;
+    color: $dark300;
+    background: $blue200;
+}
+
+main {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+
+        .box {
+            border: 1px solid $gray300;
+            width: 100%;
+            background: $white;
+            border-radius: 5px;
+            overflow: hidden;
+
+            h1 {
+                padding-top: 24px;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+                margin-bottom: 24px;
+            }
+
+            .list {
+                overflow-y: scroll;
+                scroll-behavior: smooth;
+                max-height: 280px;
+                padding: 0 16px;
+
+                ul {
+                    li {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 8px 18px;
+                        border-radius: 5px;
+
+                        .right {
+                            display: flex;
+
+                            .checkbox {
+                                margin-left: 16px;
+
+                                input {
+                                    cursor: pointer;
+                                    height: 24px;
+                                    width: 24px;
+                                }
+
+                                .red_label,
+                                .yellow_label {
+                                    position: relative;
+
+                                    &::after {
+                                        content: "";
+                                        display: block;
+                                        position: absolute;
+                                        width: 24px;
+                                        height: 8px;
+                                        border-radius: 8px;
+                                        bottom: -16px;
+                                    }
+                                }
+
+                                .red_label {
+                                    &::after {
+                                        background: $red100;
+                                    }
+                                }
+
+                                .yellow_label {
+                                    &::after {
+                                        background: $yellow100;
+                                    }
+                                }
+                            }
+
+                            .desc {
+                                p {
+                                    font-size: 15px;
+                                    color: $dark100;
+                                    overflow: hidden;
+                                    max-width: 300px;
+                                    line-height: 27px;
+                                    height: 24px;
+                                    margin-bottom: 12px;
+                                }
+
+                                .done {
+                                    color: $dark200;
+                                    position: relative;
+
+                                    &::after {
+                                        position: absolute;
+                                        display: block;
+                                        content: "";
+                                        width: 100%;
+                                        border-bottom: 1px solid $red200;
+                                        top: 60%;
+                                    }
+                                }
+
+                                span {
+                                    font-size: 12px;
+                                    font-weight: 300;
+                                }
+                            }
+                        }
+
+                        .btn {
+                            transition: all 0.6s;
+                            opacity: 0;
+
+                            .info,
+                            .delete {
+                                cursor: pointer;
+
+                                svg {
+                                    width: 28px;
+                                    height: 28px;
+                                }
+                            }
+
+                            .info {
+                                margin-left: 16px;
+
+                                svg {
+                                    fill: $info-light;
+                                }
+                            }
+                        }
+
+                        &:hover {
+                            transition: all 0.6s;
+                            background: $gray200;
+
+                            .btn {
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                    .empty_list {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100px;
+                        color: $gray300;
+                        padding: 8px 0;
+                    }
+                }
+            }
+
+            .inputs {
+                padding: 16px;
+                background: $gray400;
+                display: flex;
+                flex-direction: column;
+
+                .item {
+                    margin-bottom: 8px;
+                    height: 32px;
+                    padding: 8px;
+                }
+
+                textarea {
+                    resize: vertical;
+                    min-height: 32px;
+                }
+
+                .btns {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .label_btn {
+                        display: flex;
+
+                        .red,
+                        .yellow {
+                            display: flex;
+                            align-items: center;
+                            padding: 8px 12px;
+                            font-size: 13px;
+                            font-weight: 300;
+                            color: $white;
+                            border-radius: 5px;
+                            cursor: pointer;
+
+                            input {
+                                cursor: pointer;
+                            }
+
+                            span {
+                                margin-right: 4px;
+                            }
+
+                        }
+
+                        .red {
+                            background: $red100;
+                            margin-left: 16px;
+                        }
+
+                        .yellow {
+                            background: $yellow100;
+                        }
+                    }
+
+                    #submit {
+                        padding: 16px 32px;
+                        color: $white;
+                        background: $blue100;
+                        font-size: 15px;
+                        font-weight: bolder;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .desc_modal {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: fit-content;
+        background: $white;
+        border: 1px solid $gray300;
+        border-radius: 5px;
+        padding: 16px 0;
+        .header{
+            h2{
+                font-size: 24px;
+                text-align: center;
+            }
+            padding-bottom: 16px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid black;
+        }
+        .content {
+            height: unset;
+            display: flex;
+            align-items: unset;
+            flex-direction: column;
+            justify-content: start;
+            padding: 8px 16px;
+            h2 {
+                font-size: 24px;
+                color: $dark100;
+                margin-bottom: 12px;
+            }
+
+            p {
+                max-height: 260px;
+                font-size: 15px;
+                color: $dark100;
+                line-height: 27px;
+                overflow: hidden;
+            }
+        }
+        .footer{
+            padding: 8px 16px;
+            border-top: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            button{
+                padding: 8px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+               cursor: pointer;
+                border-radius: 5px;
+                color:$white;
+                font-size: 14px;
+                
+            }
+            #close_modal{
+                background: $secondary;
+                border: 1px solid $secondary-Dark;
+            }
+            #modal_delete_btn{
+                background: $danger;
+                border: 1px solid $danger-Dark;
+            }
+
+        }
+
+    }
+
+    .filter_box {
+        position: absolute;
+        bottom: 22px;
+        right: 24px;
+        background: $white;
+
+        button {
+            cursor: pointer;
+        }
+    }
+
+    .filter_box_close {
+        transition: all 0.6s;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+
+        button {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filters {
+            opacity: 0;
+            display: none;
+
+        }
+    }
+
+    .filter_box_open {
+        transition: all 0.6s;
+        width: 208px;
+        height: 226px;
+        padding: 18px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+        border-radius: 5px;
+
+        .filters {
+            display: flex;
+            flex-direction: column;
+
+            .up,
+            .down {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 16px;
+
+                .item {
+                    display: flex;
+                    align-items: center;
+                    background: red;
+                    color: $white;
+                    width: 100%;
+                    padding: 8px 0;
+                    font-size: 13px;
+                    font-weight: 300;
+                    cursor: pointer;
+                    border-radius: 5px;
+
+                    input {
+                        margin-left: 8px;
+                    }
+                }
+            }
+
+            .up {
+                margin-bottom: 28px;
+
+                .red {
+                    background: $red100;
+                    margin-bottom: 10px;
+                }
+
+                .yellow {
+                    background: $yellow100;
+                }
+            }
+
+            .down {
+                .green {
+                    background: $green100;
+                    margin-bottom: 10px;
+                }
+
+                .blue {
+                    background: $blue100;
+                }
+            }
+        }
+    }
+    .remove_box{
+        display: none;
+    }
+}
